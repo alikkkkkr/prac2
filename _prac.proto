@@ -1,0 +1,95 @@
+using System;
+
+namespace popit
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("выбери иномер игры:  1.игра угадай число  2.таблица умножения  3.вывод делителей числа  4.выход: ");
+            int c = Convert.ToInt32(Console.ReadLine());
+            switch (c)
+            {
+                case 1:
+                    igra1();
+                    break;
+
+                case 2:
+                    igra2();
+                    break;
+
+                case 3:
+                    igra3();
+                    break;
+
+                case 4:
+                    vixod();
+                    break;
+
+                default:
+                    Console.WriteLine("попробуйте снова, неверная программа");
+                    break;
+            }
+            Console.ReadKey();
+        }
+
+        static void igra1()
+        {
+            Random rnd = new Random();
+            int value = rnd.Next(0, 100);
+
+            int x = 0;
+            do
+            {
+                Console.WriteLine("введите число от 0 до 100: ");
+                int chislo = Convert.ToInt32(Console.ReadLine());
+
+                if (chislo > value) Console.WriteLine("меньше надо, куда столько");
+                if (chislo < value) Console.WriteLine("больше надо, че так мало");
+
+                if (chislo > 100) Console.WriteLine("слишком большое число");
+                if (chislo < 0) Console.WriteLine("слишком маленькое число");
+                
+                if (chislo == value) x = 1;
+
+            } while (x != 1);
+            Console.WriteLine("вы выиграли!");
+        }
+
+        static void igra2()
+        {
+            int[,] Tablica = new int[9, 9];
+            {
+                for (int peremennaya1 = 1; peremennaya1 <= 9; peremennaya1++) 
+                {
+                    for (int peremennaya2 = 1; peremennaya2 <= 9; peremennaya2++)
+                        Console.WriteLine(peremennaya2 * peremennaya1);
+                }
+            }
+
+            for (int peremennaya1 = 1; peremennaya1 < Tablica.GetLength(0); peremennaya1++)
+            {
+                for (int peremennaya2 = 1; peremennaya2 < Tablica.GetLength(1); peremennaya2++)
+                {
+                    Console.Write(Tablica[peremennaya1, peremennaya2] + "[" + peremennaya1 * peremennaya2 + "]\t\t");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        static void igra3()
+        {
+            Console.WriteLine("введите число: ");
+            int polzovatel = Convert.ToInt32(Console.ReadLine());
+            for (int i = 1; i <= polzovatel; i++)
+            {
+                if (polzovatel % i == 0) Console.Write(i + " ");
+            }
+        }
+
+        static void vixod()
+        {
+            Console.WriteLine(" Вы вышли ");
+        }
+    }
+}
